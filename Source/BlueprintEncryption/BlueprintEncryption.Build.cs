@@ -1,51 +1,44 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// Copyright 2022 Chris Ringenberg https://www.ringenberg.dev/
 
 using UnrealBuildTool;
+using System.IO;
 
 public class BlueprintEncryption : ModuleRules
 {
+	private string ThirdPartyPath
+	{
+		get { return Path.Combine(PluginDirectory,"Source/ThirdParty"); }
+	}
+
 	public BlueprintEncryption(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-		
+		bEnableUndefinedIdentifierWarnings = false;
+		bEnableExceptions = true;
+		bEnableObjCExceptions = true;
+		OptimizeCode = CodeOptimization.InShippingBuildsOnly;
+
 		PublicIncludePaths.AddRange(
-			new string[] {
-				// ... add public include paths required here ...
+			new string[]
+			{
+				Path.Combine(ThirdPartyPath),
+				Path.Combine(ThirdPartyPath, "jwt-cpp"),
+				Path.Combine(ThirdPartyPath, "hash-library")
 			}
-			);
-				
-		
-		PrivateIncludePaths.AddRange(
-			new string[] {
-				// ... add other private include paths required here ...
-			}
-			);
-			
+		);
 		
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
+				"Engine",
 				"Core",
-				"BlueprintEncryptionLibrary",
-				"Projects"
-				// ... add other public dependencies that you statically link with here ...
+				"CoreUObject",
+				"Slate",
+				"OpenSSL"
 			}
-			);
-			
+		);
 		
-		PrivateDependencyModuleNames.AddRange(
-			new string[]
-			{
-				// ... add private dependencies that you statically link with here ...	
-			}
-			);
-		
-		
-		DynamicallyLoadedModuleNames.AddRange(
-			new string[]
-			{
-				// ... add any modules that your module loads dynamically here ...
-			}
-			);
+		PrivateDependencyModuleNames.AddRange(new string[] { "JsonUtilities" });
+		PublicAdditionalLibraries.Add(Path.Combine(ThirdPartyPath, "hash-library", "HashLibrary.lib"));
 	}
 }

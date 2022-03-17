@@ -3,22 +3,34 @@
 	"Version": 1,
 	"VersionName": "1.0",
 	"FriendlyName": "BlueprintEncryption",
-	"Description": "",
-	"Category": "Other",
+	"Description": "Plugin to allow for the creation of SHA256, MD5, and other hashes in blueprint. As well as Encoding and Decoding JWTs",
+	"Category": "Encryption",
 	"CreatedBy": "Chris Ringenberg",
 	"CreatedByURL": "https://www.ringenberg.dev/",
-	"DocsURL": "",
+	"DocsURL": "https://docs.google.com/document/d/15iSe5g5yr5foK0qC29i-d4DTcsiy7PEWEknTtz05L9A/edit?usp=sharing",
 	"MarketplaceURL": "",
-	"SupportURL": "",
-	"CanContainContent": true,
+	"SupportURL": "https://www.ringenberg.dev/contact",
+	"EngineVersion": "4.27.0",
+	"CanContainContent": false,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
-	"Installed": false,
+	"Installed": true,
 	"Modules": [
 		{
 			"Name": "BlueprintEncryption",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Win64"
+			]
+		},
+		{
+			"Name": "BlueprintEncryptionGraph",
+			"Type": "UncookedOnly",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Win64"
+			]
 		}
 	]
 }

@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// Copyright 2022 Chris Ringenberg https://www.ringenberg.dev/
 
 #pragma once
 
@@ -13,6 +13,4 @@ public:
 	virtual void ShutdownModule() override;
 
 private:
-	/** Handle to the test dll we will load */
-	void*	ExampleLibraryHandle;
 };
